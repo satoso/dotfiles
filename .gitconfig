@@ -1,0 +1,12 @@
+[user]
+	name = satoso
+	email = satoso@users.noreply.github.com
+[color]
+	ui = auto
+[push]
+	default = simple
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[core]
+	editor = /usr/bin/vim
