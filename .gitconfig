@@ -10,3 +10,4 @@
 	smudge = git-media-smudge %f
 [core]
 	editor = /usr/bin/vim
+	excludesfile = ~/.gitignore_global

@@ -121,3 +121,7 @@ let g:vimfiler_as_default_explorer = 1
 " http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
+" undofileを作成しない
+" http://www.kaoriya.net/blog/2014/03/30/
+set noundofile
+
