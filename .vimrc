@@ -50,7 +50,10 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'matthewtodd/vim-twilight'
 NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'vim-scripts/oceanlight'
+NeoBundle 'vim-scripts/simpleandfriendly.vim'
 
 
 

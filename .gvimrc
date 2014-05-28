@@ -4,11 +4,14 @@ if has('gui_macvim')
     " カラースキーム
     " カスタムカラースキーム -> ~/.vim/colors
     " colorscheme desert
-    " let g:solarized_visibility="low"   " colorschemeより前に宣言すること
-    " colorscheme solarized
+    "
+    "let g:solarized_visibility="low"   " colorschemeより前に宣言すること
+    "colorscheme solarized
+    "set background=light
+    "
     " colorscheme wombat
     colorscheme hybrid
-    " set background=dark
+    " colorscheme pyte
 
     " 透明度
     "set transparency=5
