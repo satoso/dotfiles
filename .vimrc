@@ -1,9 +1,6 @@
 " vi互換にしない
 set nocompatible
 
-"" pathogen
-"execute pathogen#infect()
-
 " ***
 " ***  NeoBundle
 " ***
@@ -40,6 +37,7 @@ NeoBundle 'Shougo/vimshell'
 " Original repos on github
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'thinca/vim-quickrun'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -54,7 +52,11 @@ NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'vim-scripts/oceanlight'
 NeoBundle 'vim-scripts/simpleandfriendly.vim'
-
+NeoBundle 'vim-scripts/xoria256.vim'
+NeoBundle 'cocopon/iceberg.vim'
+NeoBundle 'sjl/badwolf'
+NeoBundle 'morhetz/gruvbox'
+NeoBundle 'chriskempson/base16-vim'
 
 
 filetype plugin indent on     " Required!
@@ -112,10 +114,7 @@ inoremap <c-j> <DOWN>
 inoremap <c-k> <UP>
 inoremap <c-l> <Right>
 
-"
 " For VimFiler
-"
-
 let g:vimfiler_edit_action = 'tabopen'
 nnoremap <space>f  :VimFilerBufferDir -buffer-name=vimfiler -quit -simple -split -toggle -winwidth=45<CR>
 let g:vimfiler_as_default_explorer = 1
@@ -128,3 +127,6 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 " http://www.kaoriya.net/blog/2014/03/30/
 set noundofile
 
+"set t_Co=256
+"syntax on
+"colorscheme hybrid
