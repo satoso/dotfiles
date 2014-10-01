@@ -1,7 +1,8 @@
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
-alias ls='ls -alF'
+alias ls='ls -alFG'
+alias be='bundle exec'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -30,7 +31,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   PS1+='\$ '
 fi
 
-if [ -d ~/projects ]; then
-  cd ~/projects
-fi
+# if [ -d ~/projects ]; then
+#   cd ~/projects
+# fi
 

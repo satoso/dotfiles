@@ -28,6 +28,7 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 
@@ -38,6 +39,7 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'othree/html5.vim'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -114,10 +116,22 @@ inoremap <c-j> <DOWN>
 inoremap <c-k> <UP>
 inoremap <c-l> <Right>
 
+" For Unite
+"let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_source_file_mru_limit=200
+nnoremap <space>ub  :Unite buffer<CR>
+nnoremap <space>uu  :Unite file_mru<CR>
+nnoremap <space>uj  :Unite bookmark<CR>
+nnoremap <space>uy  :Unite history/yank<CR>
+
 " For VimFiler
+"autocmd VimEnter * if !argc() | VimFiler -split | endif
 let g:vimfiler_edit_action = 'tabopen'
-nnoremap <space>f  :VimFilerBufferDir -buffer-name=vimfiler -quit -simple -split -toggle -winwidth=45<CR>
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
+nnoremap <space>f  :VimFiler -buffer-name=vimfilersplit -find -force-quit -simple -split -toggle -winwidth=45<CR>
+nnoremap <space>F  :VimFilerTab -buffer-name=vimfiler -no-quit -find -toggle<CR>
 
 " md as markdown, instead of modula2
 " http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
@@ -127,6 +141,10 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 " http://www.kaoriya.net/blog/2014/03/30/
 set noundofile
 
+" vimshell
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+
 "set t_Co=256
 "syntax on
 "colorscheme hybrid
+

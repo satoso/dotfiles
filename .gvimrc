@@ -10,17 +10,21 @@ if has('gui_macvim')
     "set background=light
     "
     " colorscheme wombat
+    " colorscheme jellybeans
     colorscheme hybrid
     " colorscheme pyte
+    " colorscheme iceberg
 
     " 透明度
     "set transparency=5
     " ツールバー非表示
     set guioptions-=T
     " フォント設定
-    set guifont=Ricty:h16
+    " set guifont=Ricty:h16
     " set guifont=BDF\ UM+\ OUTLINE:h13
     " set guifont=Menlo:h14
+    set guifont=DejaVu\ Sans\ Mono:h14
+    set guifontwide=Ricty:h16
     " set guifont=Migu\ 2M:h14
     "
     " http://blog.ruedap.com/entry/20110712/vim_statusline_git_branch_name
