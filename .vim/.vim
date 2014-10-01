@@ -1,1 +1,0 @@
-/Users/satoso/dotfiles/.vim
