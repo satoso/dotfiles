@@ -1,5 +1,9 @@
 # mac
 .DS_Store
+
 # vim
 *.swp
 *.un~
+
+# rake-completion
+.rake_tasks~

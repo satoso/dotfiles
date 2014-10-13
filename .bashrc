@@ -1,8 +1,16 @@
+#    _               _
+#   | |             | |
+#   | |__   __ _ ___| |__  _ __ ___
+#   | '_ \ / _` / __| '_ \| '__/ __|
+#  _| |_) | (_| \__ \ | | | | | (__
+# (_)_.__/ \__,_|___/_| |_|_|  \___|
+
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
 alias ls='ls -alFG'
 alias be='bundle exec'
+alias macvim='open -a /Applications/MacVim.app'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -29,6 +37,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   PS1='\[\e[0;34m\]\W\[\e[0m\]'
   PS1+='$(__git_ps1 " \[\e[0;35m\][%s]\[\e[0m\]")\[\e[0m\] '
   PS1+='\$ '
+
+  . ~/projects/rake-completion/rake
 fi
 
 # if [ -d ~/projects ]; then
