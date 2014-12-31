@@ -38,7 +38,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   PS1+='$(__git_ps1 " \[\e[0;35m\][%s]\[\e[0m\]")\[\e[0m\] '
   PS1+='\$ '
 
-  . ~/projects/rake-completion/rake
+  # . ~/projects/rake-completion/rake
 fi
 
 # if [ -d ~/projects ]; then
