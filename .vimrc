@@ -17,6 +17,10 @@ if has('vim_starting')
    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+if !has('gui_running')
+  set t_Co=256
+endif
+
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -52,6 +56,7 @@ NeoBundle 'vim-jp/autofmt'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'itchyny/lightline.vim'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -143,8 +148,61 @@ nnoremap <space>uy  :Unite history/yank<CR>
 let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
-nnoremap <space>f  :VimFiler -buffer-name=vimfilersplit -find -force-quit -simple -split -toggle -winwidth=45<CR>
-nnoremap <space>F  :VimFilerTab -buffer-name=vimfiler -no-quit -find -toggle<CR>
+nnoremap <space>f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -toggle -winwidth=45<CR>
+nnoremap <space>F  :<C-u>VimFilerTab -buffer-name=vimfiler -no-quit -find -toggle<CR>
+
+" For lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'normal',
+      \ 'active': {
+      \   'left':  [ [ 'mode', 'paste' ],
+      \              [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \            [ 'percent' ],
+      \            [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%04B'
+      \ },
+      \ 'component_function': {
+      \   'fugitive':     'MyFugitive',
+      \   'readonly':     'MyReadonly',
+      \   'modified':     'MyModified',
+      \   'filename':     'MyFilename'
+      \ }
+      \ }
+
+function! MyModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! MyReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "RO"
+  else
+    return ""
+  endif
+endfunction
+
+function! MyFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
 
 " md as markdown, instead of modula2
 " http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
