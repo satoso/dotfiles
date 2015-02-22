@@ -18,7 +18,7 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -72,6 +72,7 @@ NeoBundle 'sjl/badwolf'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle 'chriskempson/base16-vim'
 
+call neobundle#end()
 
 filetype plugin indent on     " Required!
 "
