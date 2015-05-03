@@ -57,6 +57,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'gre/play2vim'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -89,11 +90,7 @@ filetype plugin indent on     " Required!
 " Installation check.
 NeoBundleCheck
 
-" ***
-" ***  NeoBundle end
-" ***
-
-
+" ===  NeoBundle end  ===
 
 " 行番号を表示
 set number
@@ -134,29 +131,59 @@ inoremap <c-j> <DOWN>
 inoremap <c-k> <UP>
 inoremap <c-l> <Right>
 
-" For Unite
-"let g:unite_enable_start_insert=1
+" md as markdown, instead of modula2
+" http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+
+" undofileを作成しない
+" http://www.kaoriya.net/blog/2014/03/30/
+set noundofile
+
+" set t_Co=256
+" syntax on
+
+" ***
+" ***  Unite
+" ***
+call unite#custom#profile('default', 'context', {
+ \   'start_insert': 1
+ \ })
 let g:unite_source_history_yank_enable=1
 let g:unite_source_file_mru_limit=200
-nnoremap <space>ub  :Unite buffer<CR>
-nnoremap <space>uu  :Unite file_mru<CR>
-nnoremap <space>uj  :Unite bookmark<CR>
-nnoremap <space>uy  :Unite history/yank<CR>
+call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> ,uk :<C-u>Unite bookmark<CR>
 
-" For VimFiler
-"autocmd VimEnter * if !argc() | VimFiler -split | endif
-let g:vimfiler_edit_action = 'tabopen'
+" ***
+" ***  VimFiler
+" ***
+" autocmd VimEnter * if !argc() | VimFiler -split | endif
+" call vimfiler#custom#profile('default', 'context', {
+"   \   'edit_action' : 'tabopen'
+"   \ })
+" let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
-nnoremap <space>f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -toggle -winwidth=45<CR>
-nnoremap <space>F  :<C-u>VimFilerTab -buffer-name=vimfiler -no-quit -find -toggle<CR>
+nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
+nnoremap ,F  :<C-u>VimFiler -buffer-name=vimfiler -force-quit -find<CR>
 
-" For lightline.vim
+" ***
+" ***  VimShell
+" ***
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+nnoremap <silent> ,vs :<C-u>VimShellBufferDir<CR>
+
+" ***
+" *** lightline.vim
+" ***
 let g:lightline = {
       \ 'colorscheme': 'normal',
       \ 'active': {
       \   'left':  [ [ 'mode', 'paste' ],
-      \              [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+      \              [ 'fugitive', 'readonly', 'filename' ] ],
       \   'right': [ [ 'lineinfo' ],
       \            [ 'percent' ],
       \            [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -204,18 +231,6 @@ function! MyFilename()
        \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
-" md as markdown, instead of modula2
-" http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
-" undofileを作成しない
-" http://www.kaoriya.net/blog/2014/03/30/
-set noundofile
-
-" vimshell
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-
-"set t_Co=256
-"syntax on
-"colorscheme hybrid
-
+" REMARKS
+" - :<C-u>... により，Vimが挿入する範囲指定を削除
