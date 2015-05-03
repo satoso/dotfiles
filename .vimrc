@@ -168,7 +168,7 @@ call vimfiler#custom#profile('default', 'context', {
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
 nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
-nnoremap ,F  :<C-u>VimFiler -buffer-name=vimfiler -force-quit -find<CR>
+nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -force-quit -find<CR>
 
 " ***
 " ***  VimShell
