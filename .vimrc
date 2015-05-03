@@ -161,9 +161,9 @@ nnoremap <silent> ,uk :<C-u>Unite bookmark<CR>
 " ***  VimFiler
 " ***
 " autocmd VimEnter * if !argc() | VimFiler -split | endif
-" call vimfiler#custom#profile('default', 'context', {
-"   \   'edit_action' : 'tabopen'
-"   \ })
+call vimfiler#custom#profile('default', 'context', {
+    \ 'safe' : 0,
+    \ })
 " let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
