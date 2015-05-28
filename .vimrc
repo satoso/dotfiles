@@ -77,6 +77,8 @@ NeoBundle 'cocopon/iceberg.vim'
 NeoBundle 'sjl/badwolf'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'djjcast/mirodark'
+NeoBundle 'vim-scripts/BusyBee'
 
 call neobundle#end()
 
@@ -145,17 +147,18 @@ set noundofile
 " ***
 " ***  Unite
 " ***
-call unite#custom#profile('default', 'context', {
- \   'start_insert': 1
- \ })
+" call unite#custom#profile('default', 'context', {
+"  \   'start_insert': 1
+"  \ })
 let g:unite_source_history_yank_enable=1
 let g:unite_source_file_mru_limit=200
-call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> ,uk :<C-u>Unite bookmark<CR>
+call unite#custom_default_action('file', 'tabopen')
+call unite#custom_default_action('source/bookmark/directory', 'vimfiler')
+nnoremap <silent> ,uy :<C-u>Unite -start-insert history/yank<CR>
+nnoremap <silent> ,,  :<C-u>Unite buffer<CR>
+nnoremap <silent> ,ur :<C-u>Unite -start-insert -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite -start-insert file_mru buffer<CR>
+nnoremap <silent> ,uk :<C-u>Unite -start-insert bookmark<CR>
 
 " ***
 " ***  VimFiler
@@ -164,11 +167,11 @@ nnoremap <silent> ,uk :<C-u>Unite bookmark<CR>
 call vimfiler#custom#profile('default', 'context', {
     \ 'safe' : 0,
     \ })
-" let g:vimfiler_edit_action = 'tabopen'
+let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
 nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
-nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -force-quit -find<CR>
+nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find -force-quit -split<CR>
 
 " ***
 " ***  VimShell
