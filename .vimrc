@@ -1,15 +1,16 @@
-"        _
-"       (_)
-" __   ___ _ __ ___  _ __ ___
-" \ \ / / | '_ ` _ \| '__/ __|
-"  _ V /| | | | | | | | | (__
-" (_)_/ |_|_| |_| |_|_|  \___|
+"""
+"""  Initialize things
+"""
 
-" skip initialization if vim-tiny or vim-small
+" skip everything if vim-tiny or vim-small
 if !1 | finish | endif
 
-" no vi-compatible
-set nocompatible
+set nocompatible    " no vi-compatible
+
+scriptencoding utf-8
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
+set fileformats=unix,dos,mac
 
 if !has('gui_running')
   set t_Co=256
@@ -67,6 +68,8 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'cocopon/lightline-hybrid.vim'
+NeoBundle 'popkirby/lightline-iceberg'
 NeoBundle 'gre/play2vim'
 
 " color scheme
@@ -94,7 +97,7 @@ call neobundle#end()
 
 " Required:
 filetype plugin indent on
-"
+
 " Brief help
 " :NeoBundleList          - list configured bundles
 " :NeoBundleInstall(!)    - install(update) bundles
@@ -143,7 +146,7 @@ nnoremap <silent> ,vs :<C-u>VimShellBufferDir<CR>
 """  lightline.vim
 """
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'hybrid',
       \ 'active': {
       \   'left':  [ [ 'mode', 'paste' ],
       \              [ 'fugitive', 'readonly', 'filename' ] ],
@@ -198,10 +201,10 @@ endfunction
 """  various other settings
 """
 
-" show line numbers
-set number
+syntax on
+set number    " show line numbers
 
-" show invisible chars
+" invisible chars
 " http://blog.remora.cx/2011/08/display-invisible-characters-on-vim.html
 set list
 if has('win32') || has('win64')
@@ -218,20 +221,18 @@ set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 
-" path to place backup files
+set scrolloff=5    " line margin while scrolling
+
+" backup files
 if has('mac')
   set backupdir=~/.Trash
+elseif has('win32') || has('win64')
+  set nobackup
 endif
 
-" line margin while scrolling
-set scrolloff=5
+set noundofile     " don't create undofile
 
-" do not fold a line automatically
-" (this will overwrite default 'textwidth' setting)
-" http://d.hatena.ne.jp/WK6/20120606/1338993826
-autocmd FileType text setlocal textwidth=0
-
-" move cursor as displayed (<C-n>,<C-p> for movement between physical lines)
+" move cursor as displayed (<C-n>,<C-p> instead for movement between physical lines)
 " https://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-japanese
 nnoremap j gj
 nnoremap k gk
@@ -243,15 +244,34 @@ inoremap <c-j> <DOWN>
 inoremap <c-k> <UP>
 inoremap <c-l> <Right>
 
-" md as markdown, instead of modula2
+" don't fold a line automatically
+" (this will overwrite default 'textwidth' setting)
+" http://d.hatena.ne.jp/WK6/20120606/1338993826
+autocmd FileType text setlocal textwidth=0
+
+" .md as markdown, instead of modula2
 " http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
-" do not create undofile
-" http://www.kaoriya.net/blog/2014/03/30/
-set noundofile
+if has('win32') || has('win64')
+  set nowrap
 
-syntax on
+  " open a new tabpage whenever a file is dropped
+  " http://vimwiki.net/?tips%2F100
+  " autocmd VimEnter * tab all
+  " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+
+  nnoremap <C-F4> :<C-u>tabclose<CR>
+  nnoremap <C-n> :<C-u>tabnew<CR>
+
+  " visible zenkaku-space
+  " http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
+  augroup highlightIdegraphicSpace
+    autocmd!
+    autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+    autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+  augroup END
+endif
 
 " REMARKS
 " - :<C-u>...  deletes range specification vim inserts
