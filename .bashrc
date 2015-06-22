@@ -68,6 +68,6 @@ PS1+='\$ ' # prompt
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
-alias ls='ls -alFG'
+alias ll='ls -alFG'
 alias be='bundle exec'
 alias macvim='open -a /Applications/MacVim.app'
