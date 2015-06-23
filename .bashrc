@@ -4,7 +4,7 @@
 if [ "$(uname)" == 'Darwin' ]; then
   # Mac
   # note that 'expr substr' isn't available on Mac
-  true  # do nothing
+  :  # do nothing
 elif [ "$(expr substr $(uname -s) 1 6)" == 'CYGWIN' ]; then
   # Cygwin
 
