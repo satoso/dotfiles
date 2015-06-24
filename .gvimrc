@@ -1,7 +1,4 @@
-colorscheme hybrid
-" colorscheme wombat
-" colorscheme jellybeans
-" colorscheme iceberg
+scriptencoding utf-8
 
 " let g:solarized_visibility="low"
 " colorscheme solarized
@@ -29,12 +26,13 @@ elseif has('win32') || has('win64')
 
   " fix mojibake on the menu bar
   " http://kaworu.jpn.org/kaworu/2013-05-08-1.php
-  if has('win32') || has('win64')
-    source $VIMRUNTIME/delmenu.vim
-    set langmenu=ja_jp.utf-8
-    source $VIMRUNTIME/menu.vim
-  endif
+  source $VIMRUNTIME/delmenu.vim
+  set langmenu=ja_jp.utf-8
+  source $VIMRUNTIME/menu.vim
 
+  set iminsert=0
+  " keep IM-control (on insert mode) disabled
+  inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
 
 " save the size and position of the window on exit
@@ -55,6 +53,20 @@ augroup END
 if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
+
+" visible zenkaku-space
+" http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
+" (must be specified before :colorscheme command)
+augroup highlightIdegraphicSpace
+  autocmd!
+  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
+
+" colorscheme hybrid
+" colorscheme wombat
+" colorscheme jellybeans
+colorscheme iceberg
 
 " " http://blog.ruedap.com/entry/20110712/vim_statusline_git_branch_name
 " " ステータスラインの表示

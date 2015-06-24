@@ -22,7 +22,7 @@ endif
 
 if has('vim_starting')
   " Required:
-  if has('win32') || has('win64')
+  if has('win32') || has('win32unix') || has('win64')
     set runtimepath+=~/vimfiles/bundle/neobundle.vim/
   else
     set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -30,7 +30,7 @@ if has('vim_starting')
 endif
 
 " Required:
-if has('win32') || has('win64')
+if has('win32') || has('win32unix') || has('win64')
   call neobundle#begin(expand('~/vimfiles/bundle/'))
 else
   call neobundle#begin(expand('~/.vim/bundle/'))
@@ -71,6 +71,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'cocopon/lightline-hybrid.vim'
 NeoBundle 'popkirby/lightline-iceberg'
 NeoBundle 'gre/play2vim'
+NeoBundle 'h1mesuke/vim-alignta'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -92,6 +93,7 @@ NeoBundle 'morhetz/gruvbox'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'djjcast/mirodark'
 NeoBundle 'vim-scripts/BusyBee'
+NeoBundle 'sickill/vim-monokai'
 
 call neobundle#end()
 
@@ -116,11 +118,12 @@ NeoBundleCheck
 let g:unite_source_history_yank_enable=1
 let g:unite_source_file_mru_limit=200
 call unite#custom_default_action('file', 'tabopen')
+call unite#custom_default_action('buffer', 'tabopen')
 call unite#custom_default_action('source/bookmark/directory', 'vimfiler')
 nnoremap <silent> ,uy :<C-u>Unite -start-insert history/yank<CR>
-nnoremap <silent> ,,  :<C-u>Unite buffer<CR>
+nnoremap <silent> ,,  :<C-u>Unite -start-insert buffer file_mru<CR>
 nnoremap <silent> ,ur :<C-u>Unite -start-insert -buffer-name=register register<CR>
-nnoremap <silent> ,uu :<C-u>Unite -start-insert file_mru buffer<CR>
+"nnoremap <silent> ,uu :<C-u>Unite -start-insert file_mru buffer<CR>
 nnoremap <silent> ,uk :<C-u>Unite -start-insert bookmark<CR>
 
 """
@@ -133,8 +136,9 @@ call vimfiler#custom#profile('default', 'context', {
 let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
-nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
-nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find -force-quit -split<CR>
+"nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
+"nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find -force-quit -split<CR>
+nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find<CR>
 
 """
 """  VimShell
@@ -207,7 +211,7 @@ set number    " show line numbers
 " invisible chars
 " http://blog.remora.cx/2011/08/display-invisible-characters-on-vim.html
 set list
-if has('win32') || has('win64')
+if has('win32') || has('win32unix') || has('win64')
   set listchars=tab:>.,trail:-,extends:>,precedes:<,nbsp:%
 else
   "set listchars=tab:»\ ,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
@@ -226,11 +230,14 @@ set scrolloff=5    " line margin while scrolling
 " backup files
 if has('mac')
   set backupdir=~/.Trash
-elseif has('win32') || has('win64')
-  set nobackup
+else
+  set backupdir=~/.vimbackup
 endif
 
-set noundofile     " don't create undofile
+if has('persistent_undo')
+  set undodir=~/.vimundo
+  set undofile
+endif
 
 " move cursor as displayed (<C-n>,<C-p> instead for movement between physical lines)
 " https://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-japanese
@@ -253,7 +260,7 @@ autocmd FileType text setlocal textwidth=0
 " http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
-if has('win32') || has('win64')
+if has('win32') || has('win32unix') || has('win64')
   set nowrap
 
   " open a new tabpage whenever a file is dropped
@@ -263,14 +270,6 @@ if has('win32') || has('win64')
 
   nnoremap <C-F4> :<C-u>tabclose<CR>
   nnoremap <C-n> :<C-u>tabnew<CR>
-
-  " visible zenkaku-space
-  " http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
-  augroup highlightIdegraphicSpace
-    autocmd!
-    autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-    autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-  augroup END
 endif
 
 " REMARKS

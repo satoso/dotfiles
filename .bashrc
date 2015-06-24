@@ -1,6 +1,11 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
 if [ "$(uname)" == 'Darwin' ]; then
   # Mac
   # note that 'expr substr' isn't available on Mac
@@ -10,8 +15,11 @@ elif [ "$(expr substr $(uname -s) 1 6)" == 'CYGWIN' ]; then
 
   # ignore CR's in scripts
   # http://chess.eecs.berkeley.edu/softdevel/faq/5.html
-  export SHELLOPTS
-  set -o igncr
+  # export SHELLOPTS
+  # set -o igncr
+
+  # `ln` to create windows-symlinks
+  export CYGWIN="winsymlinks:native"
 fi
 
 # search /usr/local/bin before /usr/bin
@@ -39,6 +47,11 @@ export HGENCODING=utf-8
 
 # for Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:${PATH}"
+
+# for Ansible
+# specify an inventory file location, instead of /etc/ansible/hosts
+export ANSIBLE_INVENTORY=~/ansible_hosts
+export ANSIBLE_COW_SELECTION=random
 
 # cancel association of ctrl-s to 'stop'
 # in reverse search(ctrl-r), ctrl-s is now available for moving forward
@@ -68,7 +81,12 @@ PS1+='\$ ' # prompt
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
-alias ls='ls -AFG'
-alias ll='ls -lAFG'
+if [ "$(uname)" == 'Darwin' ]; then
+  alias ls='ls -AFG'
+  alias ll='ls -lAFG'
+else
+  alias ls='ls -AF --color=auto'
+  alias ll='ls -lAF --color=auto'
+fi
 alias be='bundle exec'
 alias macvim='open -a /Applications/MacVim.app'
