@@ -72,6 +72,7 @@ NeoBundle 'cocopon/lightline-hybrid.vim'
 NeoBundle 'popkirby/lightline-iceberg'
 NeoBundle 'gre/play2vim'
 NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'PProvost/vim-ps1'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
