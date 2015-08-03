@@ -63,10 +63,10 @@ augroup highlightIdegraphicSpace
   autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
-" colorscheme hybrid
+colorscheme hybrid
 " colorscheme wombat
 " colorscheme jellybeans
-colorscheme iceberg
+" colorscheme iceberg
 
 " " http://blog.ruedap.com/entry/20110712/vim_statusline_git_branch_name
 " " ステータスラインの表示

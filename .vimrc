@@ -251,6 +251,8 @@ inoremap <c-h> <LEFT>
 inoremap <c-j> <DOWN>
 inoremap <c-k> <UP>
 inoremap <c-l> <Right>
+" very magic - get rid of vim's obscure regexp
+nnoremap /  /\v
 
 " don't fold a line automatically
 " (this will overwrite default 'textwidth' setting)
