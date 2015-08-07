@@ -253,6 +253,8 @@ inoremap <c-k> <UP>
 inoremap <c-l> <Right>
 " very magic - get rid of vim's obscure regexp
 nnoremap /  /\v
+" ESC to no-highlight
+nnoremap <silent> <ESC> <ESC>:nohlsearch<CR>
 
 " don't fold a line automatically
 " (this will overwrite default 'textwidth' setting)

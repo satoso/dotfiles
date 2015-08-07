@@ -1,9 +1,5 @@
 scriptencoding utf-8
 
-" let g:solarized_visibility="low"
-" colorscheme solarized
-" set background=light
-
 set cursorline        " mark the current line
 set cursorcolumn      " mark the current column
 
@@ -21,6 +17,8 @@ elseif has('win32') || has('win64')
   set guifont=BDF\ UM+\ OUTLINE:h10
   " set guifont=Consolas:h10
   " set guifont=MS_Gothic:h9
+  " set guifontwide=Migu\ 2M:h10.5
+  " set renderoptions=type:directx,renmode:5,gamma:1.9
 
   set showtabline=2
 
@@ -67,6 +65,10 @@ colorscheme hybrid
 " colorscheme wombat
 " colorscheme jellybeans
 " colorscheme iceberg
+
+" let g:solarized_visibility="low"
+" colorscheme solarized
+" set background=light
 
 " " http://blog.ruedap.com/entry/20110712/vim_statusline_git_branch_name
 " " ステータスラインの表示
