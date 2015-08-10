@@ -229,11 +229,7 @@ set softtabstop=2
 set scrolloff=5    " line margin while scrolling
 
 " backup files
-if has('mac')
-  set backupdir=~/.Trash
-else
-  set backupdir=~/.vimbackup
-endif
+set backupdir=~/.vimbackup
 
 if has('persistent_undo')
   set undodir=~/.vimundo
