@@ -273,5 +273,13 @@ if has('win32') || has('win32unix') || has('win64')
   nnoremap <C-n> :<C-u>tabnew<CR>
 endif
 
+" read local settings
+if filereadable(expand($HOME.'/.vimrc_local'))
+  source $HOME/.vimrc_local
+endif
+if filereadable(expand($HOME.'/_vimrc_local'))
+  source $HOME/_vimrc_local
+endif
+
 " REMARKS
 " - :<C-u>...  deletes range specification vim inserts

@@ -99,3 +99,11 @@ colorscheme hybrid
 " set statusline+=%y    " バッファ内のファイルのタイプ
 " set statusline+=\ \   " 空白スペース2個
 " set statusline+=%P    " ファイル内の何％の位置にあるか
+
+" read local settings
+if filereadable(expand($HOME.'/.gvimrc_local'))
+  source $HOME/.gvimrc_local
+endif
+if filereadable(expand($HOME.'/_gvimrc_local'))
+  source $HOME/_gvimrc_local
+endif
