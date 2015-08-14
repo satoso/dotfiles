@@ -2,18 +2,14 @@ scriptencoding utf-8
 
 set cursorline        " mark the current line
 set cursorcolumn      " mark the current column
+set guioptions-=T     " don't show toolbars
 
 if has('mac')
-
-  set guioptions-=T   " don't show toolbars
-
   set guifont=DejaVu\ Sans\ Mono:h14
   set guifontwide=Ricty:h16
   " set guifont=Menlo:h14
   " set guifont=Migu\ 2M:h14
-
 elseif has('win32') || has('win64')
-
   set guifont=BDF\ UM+\ OUTLINE:h10
   " set guifont=Consolas:h10
   " set guifont=MS_Gothic:h9
@@ -62,43 +58,10 @@ augroup highlightIdegraphicSpace
 augroup END
 
 colorscheme hybrid
-" colorscheme wombat
-" colorscheme jellybeans
-" colorscheme iceberg
 
 " let g:solarized_visibility="low"
 " colorscheme solarized
 " set background=light
-
-" " http://blog.ruedap.com/entry/20110712/vim_statusline_git_branch_name
-" " ステータスラインの表示
-" set statusline=%<     " 行が長すぎるときに切り詰める位置
-" set statusline+=[%n]  " バッファ番号
-" set statusline+=%m    " %m 修正フラグ
-" set statusline+=%r    " %r 読み込み専用フラグ
-" set statusline+=%h    " %h ヘルプバッファフラグ
-" set statusline+=%w    " %w プレビューウィンドウフラグ
-" set statusline+=\     " 空白スペース
-" "if winwidth(0) >= 130
-"   set statusline+=%F    " バッファ内のファイルのフルパス
-" "else
-" "  set statusline+=%t    " ファイル名のみ
-" "endif
-" set statusline+=%=    " 左寄せ項目と右寄せ項目の区切り
-" set statusline+=%{fugitive#statusline()}  " Gitのブランチ名を表示
-" set statusline+=\ \   " 空白スペース2個
-" set statusline+=%1l   " 何行目にカーソルがあるか
-" set statusline+=/
-" set statusline+=%L    " バッファ内の総行数
-" set statusline+=,
-" set statusline+=%c    " 何列目にカーソルがあるか
-" set statusline+=%V    " 画面上の何列目にカーソルがあるか
-" set statusline+=\     " 空白スペース
-" set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fencとffを表示
-" set statusline+=[0x%04B]    " カーソル位置の文字のUnicode code point
-" set statusline+=%y    " バッファ内のファイルのタイプ
-" set statusline+=\ \   " 空白スペース2個
-" set statusline+=%P    " ファイル内の何％の位置にあるか
 
 " read local settings
 if filereadable(expand($HOME.'/.gvimrc_local'))

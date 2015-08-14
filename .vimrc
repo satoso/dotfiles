@@ -6,7 +6,6 @@
 if !1 | finish | endif
 
 set nocompatible    " no vi-compatible
-
 scriptencoding utf-8
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
@@ -83,28 +82,14 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'matthewtodd/vim-twilight'
 NeoBundle 'jnurmine/Zenburn'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'vim-scripts/oceanlight'
-NeoBundle 'vim-scripts/simpleandfriendly.vim'
-NeoBundle 'vim-scripts/xoria256.vim'
 NeoBundle 'cocopon/iceberg.vim'
-NeoBundle 'sjl/badwolf'
-NeoBundle 'morhetz/gruvbox'
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'djjcast/mirodark'
-NeoBundle 'vim-scripts/BusyBee'
 NeoBundle 'sickill/vim-monokai'
 
 call neobundle#end()
 
 " Required:
 filetype plugin indent on
-
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
@@ -124,7 +109,6 @@ call unite#custom_default_action('source/bookmark/directory', 'vimfiler')
 nnoremap <silent> ,uy :<C-u>Unite -start-insert history/yank<CR>
 nnoremap <silent> ,,  :<C-u>Unite -start-insert buffer file_mru<CR>
 nnoremap <silent> ,ur :<C-u>Unite -start-insert -buffer-name=register register<CR>
-"nnoremap <silent> ,uu :<C-u>Unite -start-insert file_mru buffer<CR>
 nnoremap <silent> ,uk :<C-u>Unite -start-insert bookmark<CR>
 
 """
@@ -208,9 +192,9 @@ endfunction
 
 syntax on
 set number    " show line numbers
+set wrap
 
 " invisible chars
-" http://blog.remora.cx/2011/08/display-invisible-characters-on-vim.html
 set list
 if has('win32') || has('win32unix') || has('win64')
   set listchars=tab:>.,trail:-,extends:>,precedes:<,nbsp:%
@@ -228,7 +212,6 @@ set softtabstop=2
 
 set scrolloff=5    " line margin while scrolling
 
-" backup files
 set backupdir=~/.vimbackup
 
 if has('persistent_undo')
@@ -252,8 +235,7 @@ nnoremap /  /\v
 " ESC to no-highlight
 nnoremap <silent> <ESC> <ESC>:nohlsearch<CR>
 
-" don't fold a line automatically
-" (this will overwrite default 'textwidth' setting)
+" don't fold a line automatically (this will overwrite default 'textwidth' setting)
 " http://d.hatena.ne.jp/WK6/20120606/1338993826
 autocmd FileType text setlocal textwidth=0
 
@@ -262,8 +244,6 @@ autocmd FileType text setlocal textwidth=0
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 if has('win32') || has('win32unix') || has('win64')
-  set nowrap
-
   " open a new tabpage whenever a file is dropped
   " http://vimwiki.net/?tips%2F100
   " autocmd VimEnter * tab all
