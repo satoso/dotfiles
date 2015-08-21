@@ -72,6 +72,7 @@ NeoBundle 'popkirby/lightline-iceberg'
 NeoBundle 'gre/play2vim'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'PProvost/vim-ps1'
+NeoBundle 'fuenor/qfixhowm.git'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -185,6 +186,15 @@ function! MyFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
+
+"""
+""" QFixHowm
+"""
+let QFixHowm_Key = 'g'
+let howm_dir             = '~/howm'
+let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+let howm_fileencoding    = 'utf-8'
+let howm_fileformat      = 'unix'
 
 """
 """  various other settings
