@@ -122,7 +122,7 @@ call vimfiler#custom#profile('default', 'context', {
     \ })
 let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_ignore_pattern = ''  " make dotfiles visible
+let g:vimfiler_ignore_pattern = []  " make dotfiles visible
 "nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
 "nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find -force-quit -split<CR>
 nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find<CR>
