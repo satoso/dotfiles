@@ -73,6 +73,7 @@ NeoBundle 'gre/play2vim'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'PProvost/vim-ps1'
 NeoBundle 'fuenor/qfixhowm.git'
+NeoBundle 'vim-scripts/vim-auto-save'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -197,6 +198,11 @@ let howm_fileencoding    = 'utf-8'
 let howm_fileformat      = 'unix'
 
 """
+""" vim-auto-save
+"""
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+
+"""
 """  various other settings
 """
 
@@ -263,13 +269,26 @@ if has('win32') || has('win32unix') || has('win64')
   nnoremap <C-n> :<C-u>tabnew<CR>
 endif
 
-" read local settings
+" load machine-local settings
 if filereadable(expand($HOME.'/.vimrc_local'))
   source $HOME/.vimrc_local
 endif
 if filereadable(expand($HOME.'/_vimrc_local'))
   source $HOME/_vimrc_local
 endif
+
+" load directory-local settings
+" http://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
 
 " REMARKS
 " - :<C-u>...  deletes range specification vim inserts
