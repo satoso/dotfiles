@@ -74,6 +74,8 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'PProvost/vim-ps1'
 NeoBundle 'fuenor/qfixhowm.git'
 NeoBundle 'vim-scripts/vim-auto-save'
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'xolox/vim-misc'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -201,6 +203,13 @@ let howm_fileformat      = 'unix'
 """ vim-auto-save
 """
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+
+"""
+""" vim-notes
+"""
+" notes directories should be specified in .vimrc_local, such as:
+" let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
+let g:notes_suffix = '.txt'
 
 """
 """  various other settings

@@ -1,7 +1,5 @@
 scriptencoding utf-8
 
-set cursorline        " mark the current line
-set cursorcolumn      " mark the current column
 set guioptions-=T     " don't show toolbars
 
 if has('mac')
@@ -58,10 +56,16 @@ augroup highlightIdegraphicSpace
 augroup END
 
 colorscheme hybrid
+highlight SpecialKey guifg=DarkGreen
 
 " let g:solarized_visibility="low"
 " colorscheme solarized
 " set background=light
+
+set cursorline        " mark the current line
+" only highlight line-numbers
+highlight CursorLine gui=NONE guifg=NONE guibg=NONE
+" set cursorcolumn      " mark the current column
 
 " read local settings
 if filereadable(expand($HOME.'/.gvimrc_local'))
