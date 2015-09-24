@@ -40,14 +40,15 @@ end
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Recommended to install
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
@@ -63,7 +64,8 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'vim-jp/autofmt'
-NeoBundle 'tpope/vim-markdown'
+NeoBundle 'rcmdnk/vim-markdown'
+"NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'itchyny/lightline.vim'
@@ -194,6 +196,7 @@ endfunction
 """ QFixHowm
 """
 let QFixHowm_Key = 'g'
+let QFixHowm_FileType = 'markdown'
 let howm_dir             = '~/howm'
 let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
 let howm_fileencoding    = 'utf-8'
@@ -266,7 +269,8 @@ autocmd FileType text setlocal textwidth=0
 
 " .md as markdown, instead of modula2
 " http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} setlocal filetype=markdown
+let g:vim_markdown_folding_disabled=1
 
 if has('win32') || has('win32unix') || has('win64')
   " open a new tabpage whenever a file is dropped
