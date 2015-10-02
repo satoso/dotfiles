@@ -76,8 +76,9 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'PProvost/vim-ps1'
 NeoBundle 'fuenor/qfixhowm.git'
 NeoBundle 'vim-scripts/vim-auto-save'
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'xolox/vim-misc'
+"NeoBundle 'xolox/vim-notes'
+"NeoBundle 'xolox/vim-misc'
+"NeoBundle 'glidenote/memolist.vim'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
