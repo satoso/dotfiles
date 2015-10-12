@@ -77,6 +77,10 @@ fi
 PS1+='\n'  # newline
 PS1+='\$ ' # prompt
 
+# golang
+export GOPATH=$HOME
+export PATH=$PATH:$GOPATH/bin
+
 # aliases
 alias mv='mv -i'
 alias rm='rm -i'

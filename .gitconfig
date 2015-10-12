@@ -11,3 +11,5 @@
 [core]
 	editor = /usr/bin/vim
 	excludesfile = ~/.gitignore_global
+[ghq]
+	root = ~/src
