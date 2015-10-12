@@ -4,6 +4,8 @@
 if !1 | finish | endif
 
 set nocompatible    " no vi-compatible
+" 'set encoding' and then 'scriptencoding'
+" http://rbtnn.hateblo.jp/entry/2014/12/28/010913
 set encoding=utf-8
 scriptencoding utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
@@ -144,7 +146,7 @@ endif
 if neobundle#tap('ctrlp.vim')
   let g:ctrlp_cmd = 'CtrlPMixed'
   let g:ctrlp_show_hidden = 1
-  let s:ignore_dir = '\.git|\.hg|\.svn|_darcs|\.bzr|\.Trash|\.rbenv|Library|Applications|Music|vendor/bundle'
+  let s:ignore_dir = '\.git|\.hg|\.svn|_darcs|\.bzr|\.Trash|\.rbenv|Library|Applications|Music|vendor/bundle|AppData'
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/](' . s:ignore_dir . ')$',
     \ 'file': '\v\.(exe|so|dll|jpg)$',
@@ -189,11 +191,7 @@ set number    " show line numbers
 set wrap
 
 set list    " show invisible chars
-if has('win32') || has('win32unix') || has('win64')
-  set listchars=tab:>.,trail:-,extends:>,precedes:<,nbsp:%
-else
-  set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%  ",eol:↲
-endif
+set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%  ",eol:↲
 
 " tabs
 " http://peacepipe.toshiville.com/2006/05/vimrc-vim.html
