@@ -3,8 +3,8 @@ scriptencoding utf-8
 set guioptions-=T     " don't show toolbars
 
 if has('mac')
-  set guifont=DejaVu\ Sans\ Mono:h14
-  set guifontwide=Ricty:h16
+  set guifont=DejaVu\ Sans\ Mono:h13
+  set guifontwide=Ricty:h15
   " set guifont=Menlo:h14
   " set guifont=Migu\ 2M:h14
 elseif has('win32') || has('win64')
@@ -15,7 +15,6 @@ elseif has('win32') || has('win64')
   " set renderoptions=type:directx,renmode:5,gamma:1.9
 
   set showtabline=2
-
   " fix mojibake on the menu bar
   " http://kaworu.jpn.org/kaworu/2013-05-08-1.php
   source $VIMRUNTIME/delmenu.vim
@@ -28,7 +27,7 @@ elseif has('win32') || has('win64')
 endif
 
 " save the size and position of the window on exit
-" http://vim-users.jp/2010/01/hack120/
+" http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
 let g:save_window_file = expand('~/.vimwinpos')
 augroup SaveWindow
   autocmd!
@@ -55,6 +54,7 @@ augroup highlightIdegraphicSpace
   autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
+set background=dark
 colorscheme hybrid
 highlight SpecialKey guifg=DarkGreen
 
@@ -62,12 +62,12 @@ highlight SpecialKey guifg=DarkGreen
 " colorscheme solarized
 " set background=light
 
-set cursorline        " mark the current line
-" only highlight line-numbers
-highlight CursorLine gui=NONE guifg=NONE guibg=NONE
+" set cursorline        " mark the current line
+" " only highlight line-numbers
+" highlight CursorLine gui=NONE guifg=NONE guibg=NONE
 " set cursorcolumn      " mark the current column
 
-" read local settings
+" load machine-local settings
 if filereadable(expand($HOME.'/.gvimrc_local'))
   source $HOME/.gvimrc_local
 endif

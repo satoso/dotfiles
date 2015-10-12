@@ -1,13 +1,11 @@
-"""
-"""  Initialize things
-"""
+"----- Initialize things -----
 
 " skip everything if vim-tiny or vim-small
 if !1 | finish | endif
 
 set nocompatible    " no vi-compatible
-scriptencoding utf-8
 set encoding=utf-8
+scriptencoding utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
 set fileformats=unix,dos,mac
 
@@ -15,221 +13,186 @@ if !has('gui_running')
   set t_Co=256
 endif
 
-"""
-"""  NeoBundle
-"""
-
-if has('vim_starting')
-  " Required:
-  if has('win32') || has('win32unix') || has('win64')
-    set runtimepath+=~/vimfiles/bundle/neobundle.vim/
-  else
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-  end
+if isdirectory($HOME.'/.vim')
+  let $MY_VIMRUNTIME = $HOME.'/.vim'
+elseif isdirectory($HOME.'\vimfiles')
+  let $MY_VIMRUNTIME = $HOME.'\vimfiles'
 endif
 
-" Required:
-if has('win32') || has('win32unix') || has('win64')
-  call neobundle#begin(expand('~/vimfiles/bundle/'))
-else
-  call neobundle#begin(expand('~/.vim/bundle/'))
-end
+"----- NeoBundle -----
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+if has('vim_starting')
+  set runtimepath+=$MY_VIMRUNTIME/bundle/neobundle.vim/
+endif
 
-" Recommended to install
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell'
+call neobundle#begin(expand($MY_VIMRUNTIME.'/bundle/'))
+  " Let NeoBundle manage NeoBundle
+  NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here:
-"
-" Note: Do not set neobundle setting in .gvimrc!
-" Original repos on github
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'vim-jp/autofmt'
-NeoBundle 'rcmdnk/vim-markdown'
-"NeoBundle 'joker1007/vim-markdown-quote-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'cocopon/lightline-hybrid.vim'
-NeoBundle 'popkirby/lightline-iceberg'
-NeoBundle 'gre/play2vim'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'PProvost/vim-ps1'
-NeoBundle 'fuenor/qfixhowm.git'
-NeoBundle 'vim-scripts/vim-auto-save'
-"NeoBundle 'xolox/vim-notes'
-"NeoBundle 'xolox/vim-misc'
-"NeoBundle 'glidenote/memolist.vim'
+  NeoBundle 'Shougo/vimproc.vim', {
+  \ 'build' : {
+  \     'windows' : 'tools\\update-dll-mingw',
+  \     'cygwin' : 'make -f make_cygwin.mak',
+  \     'mac' : 'make -f make_mac.mak',
+  \     'linux' : 'make',
+  \     'unix' : 'gmake',
+  \    },
+  \ }
+  " NeoBundle 'Shougo/unite.vim'
+  " NeoBundle 'Shougo/neomru.vim'
+  " NeoBundle 'Shougo/vimfiler'
+  " NeoBundle 'Shougo/vimshell'
 
-" color scheme
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'vim-scripts/Wombat'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'matthewtodd/vim-twilight'
-NeoBundle 'jnurmine/Zenburn'
-NeoBundle 'cocopon/iceberg.vim'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'sickill/vim-monokai'
+  " My Bundles here:
+  " Note: Do not set neobundle setting in .gvimrc!
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'vim-jp/autofmt'
+  NeoBundle 'itchyny/lightline.vim'
+  NeoBundle 'cocopon/lightline-hybrid.vim'
+  NeoBundle 'popkirby/lightline-iceberg'
+  NeoBundle 'h1mesuke/vim-alignta'
+  NeoBundle 'glidenote/memolist.vim'
+  NeoBundle 'ctrlpvim/ctrlp.vim'
+  NeoBundle 'justinmk/vim-dirvish'
 
+  " syntax
+  NeoBundle 'slim-template/vim-slim'
+  NeoBundle 'othree/html5.vim'
+  NeoBundle 'hail2u/vim-css3-syntax'
+  NeoBundle 'rcmdnk/vim-markdown'
+  " NeoBundle 'joker1007/vim-markdown-quote-syntax'
+  NeoBundle 'kchmck/vim-coffee-script'
+  NeoBundle 'derekwyatt/vim-scala'
+  NeoBundle 'gre/play2vim'
+  NeoBundle 'PProvost/vim-ps1'
+
+  " color scheme
+  NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'w0ng/vim-hybrid'
+  NeoBundle 'vim-scripts/Wombat'
+  NeoBundle 'nanotech/jellybeans.vim'
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'chriskempson/vim-tomorrow-theme'
+  NeoBundle 'matthewtodd/vim-twilight'
+  NeoBundle 'cocopon/iceberg.vim'
+  NeoBundle 'chriskempson/base16-vim'
+  NeoBundle 'sickill/vim-monokai'
 call neobundle#end()
 
-" Required:
 filetype plugin indent on
-
 " If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
+" this will conveniently prompt you to install them:
 NeoBundleCheck
 
-"""
-"""  Unite
-"""
-" call unite#custom#profile('default', 'context', {
-"  \   'start_insert': 1
-"  \ })
-let g:unite_source_history_yank_enable=1
-let g:unite_source_file_mru_limit=200
-call unite#custom_default_action('file', 'tabopen')
-call unite#custom_default_action('buffer', 'tabopen')
-call unite#custom_default_action('source/bookmark/directory', 'vimfiler')
-nnoremap <silent> ,uy :<C-u>Unite -start-insert history/yank<CR>
-nnoremap <silent> ,,  :<C-u>Unite -start-insert buffer file_mru<CR>
-nnoremap <silent> ,ur :<C-u>Unite -start-insert -buffer-name=register register<CR>
-nnoremap <silent> ,uk :<C-u>Unite -start-insert bookmark<CR>
+"----- plugin settings -----
 
-"""
-"""  VimFiler
-"""
-" autocmd VimEnter * if !argc() | VimFiler -split | endif
-call vimfiler#custom#profile('default', 'context', {
-    \ 'safe' : 0,
-    \ })
-let g:vimfiler_edit_action = 'tabopen'
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_ignore_pattern = []  " make dotfiles visible
-"nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfilersplit -find -force-quit -simple -split -winwidth=45<CR>
-"nnoremap ,F  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find -force-quit -split<CR>
-nnoremap ,f  :<C-u>VimFilerBufferDir -buffer-name=vimfiler -find<CR>
+if neobundle#tap('lightline.vim') && neobundle#tap('vim-fugitive')
+  let g:lightline = {
+        \ 'colorscheme': 'hybrid',
+        \ 'active': {
+        \   'left':  [ [ 'mode', 'paste' ],
+        \              [ 'fugitive', 'readonly', 'filename' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \            [ 'percent' ],
+        \            [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ },
+        \ 'component': {
+        \   'charvaluehex': '0x%04B'
+        \ },
+        \ 'component_function': {
+        \   'fugitive':     'MyFugitive',
+        \   'readonly':     'MyReadonly',
+        \   'modified':     'MyModified',
+        \   'filename':     'MyFilename'
+        \ }
+        \ }
 
-"""
-"""  VimShell
-"""
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-nnoremap <silent> ,vs :<C-u>VimShellBufferDir<CR>
+  function! MyModified()
+    if &filetype == "help"
+      return ""
+    elseif &modified
+      return "+"
+    elseif &modifiable
+      return ""
+    else
+      return ""
+    endif
+  endfunction
 
-"""
-"""  lightline.vim
-"""
-let g:lightline = {
-      \ 'colorscheme': 'hybrid',
-      \ 'active': {
-      \   'left':  [ [ 'mode', 'paste' ],
-      \              [ 'fugitive', 'readonly', 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \            [ 'percent' ],
-      \            [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%04B'
-      \ },
-      \ 'component_function': {
-      \   'fugitive':     'MyFugitive',
-      \   'readonly':     'MyReadonly',
-      \   'modified':     'MyModified',
-      \   'filename':     'MyFilename'
-      \ }
-      \ }
+  function! MyReadonly()
+    if &filetype == "help"
+      return ""
+    elseif &readonly
+      return "RO"
+    else
+      return ""
+    endif
+  endfunction
 
-function! MyModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
+  function! MyFugitive()
+    return exists('*fugitive#head') ? fugitive#head() : ''
+  endfunction
+
+  function! MyFilename()
+    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+         \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+         \ ('' != MyModified() ? ' ' . MyModified() : '')
+  endfunction
+endif
+
+if neobundle#tap('ctrlp.vim')
+  let g:ctrlp_cmd = 'CtrlPMixed'
+  let g:ctrlp_show_hidden = 1
+  let s:ignore_dir = '\.git|\.hg|\.svn|_darcs|\.bzr|\.Trash|\.rbenv|Library|Applications|Music|vendor/bundle'
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](' . s:ignore_dir . ')$',
+    \ 'file': '\v\.(exe|so|dll|jpg)$',
+    \ }
+  " mattn/files
+  if getftype(expand('~/bin/files')) == 'file'
+    let g:ctrlp_user_command = '~/bin/files -i ''^(' . s:ignore_dir . ')$'' -p %s'
   endif
-endfunction
+endif
 
-function! MyReadonly()
-  if &filetype == "help"
-    return ""
-  elseif &readonly
-    return "RO"
-  else
-    return ""
+if neobundle#tap('vim-markdown')
+  let g:vim_markdown_folding_disabled = 1
+endif
+
+if neobundle#tap('memolist.vim')
+  " g:memolist_path should be specified in .vimrc_local, e.g.:
+  " if neobundle#tap('memolist.vim')
+  "   let g:memolist_path = $HOME.'/path/to/memolist.vim'
+  " endif
+  let g:memolist_memo_suffix = "md"
+  if neobundle#tap('ctrlp.vim')
+    nmap ,mf :execute "CtrlP" g:memolist_path<cr><f5>
   endif
-endfunction
+  nmap ,mc :MemoNew<cr>
+  nmap ,mg :MemoGrep<cr>
+endif
 
-function! MyFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
-endfunction
+if neobundle#tap('vim-dirvish')
+  augroup dirvish-events
+    autocmd!
+    " t: open in new tab
+    autocmd FileType dirvish nnoremap <buffer> t
+        \ :tabnew <C-R>=fnameescape(getline('.'))<CR><CR>
+  augroup END
+  nnoremap ,f :<C-u>Dirvish %:p:h<CR>
+endif
 
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-       \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
-
-"""
-""" QFixHowm
-"""
-let QFixHowm_Key = 'g'
-let QFixHowm_FileType = 'markdown'
-let howm_dir             = '~/howm'
-let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-let howm_fileencoding    = 'utf-8'
-let howm_fileformat      = 'unix'
-
-"""
-""" vim-auto-save
-"""
-let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-
-"""
-""" vim-notes
-"""
-" notes directories should be specified in .vimrc_local, such as:
-" let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
-let g:notes_suffix = '.txt'
-
-"""
-"""  various other settings
-"""
+"----- various other settings -----
 
 syntax on
 set number    " show line numbers
 set wrap
 
-" invisible chars
-set list
+set list    " show invisible chars
 if has('win32') || has('win32unix') || has('win64')
   set listchars=tab:>.,trail:-,extends:>,precedes:<,nbsp:%
 else
-  "set listchars=tab:»\ ,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-  set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
+  set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%  ",eol:↲
 endif
 
 " tabs
@@ -241,10 +204,12 @@ set softtabstop=2
 
 set scrolloff=5    " line margin while scrolling
 
-set backupdir=~/.vimbackup
+if isdirectory(expand($HOME.'/.vimbackup'))
+  set backupdir=$HOME/.vimbackup
+endif
 
-if has('persistent_undo')
-  set undodir=~/.vimundo
+if has('persistent_undo') && isdirectory(expand($HOME.'/.vimundo'))
+  set undodir=$HOME/.vimundo
   set undofile
 endif
 
@@ -261,27 +226,25 @@ inoremap <c-k> <UP>
 inoremap <c-l> <Right>
 " very magic - get rid of vim's obscure regexp
 nnoremap /  /\v
-" ESC to no-highlight
-nnoremap <silent> <ESC> <ESC>:nohlsearch<CR>
-
-" don't fold a line automatically (this will overwrite default 'textwidth' setting)
-" http://d.hatena.ne.jp/WK6/20120606/1338993826
-autocmd FileType text setlocal textwidth=0
-
-" .md as markdown, instead of modula2
-" http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} setlocal filetype=markdown
-let g:vim_markdown_folding_disabled=1
 
 if has('win32') || has('win32unix') || has('win64')
-  " open a new tabpage whenever a file is dropped
-  " http://vimwiki.net/?tips%2F100
-  " autocmd VimEnter * tab all
-  " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
-
   nnoremap <C-F4> :<C-u>tabclose<CR>
   nnoremap <C-n> :<C-u>tabnew<CR>
 endif
+
+" don't fold a line automatically (this will overwrite default 'textwidth' setting)
+" http://d.hatena.ne.jp/WK6/20120606/1338993826
+augroup dontfold
+  autocmd!
+  autocmd FileType text setlocal textwidth=0
+augroup END
+
+" .md as markdown, instead of modula2
+" http://rcmdnk.github.io/blog/2013/11/17/computer-vim/
+augroup md-extension
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} setlocal filetype=markdown
+augroup END
 
 " load machine-local settings
 if filereadable(expand($HOME.'/.vimrc_local'))
