@@ -54,7 +54,6 @@ call neobundle#begin(expand($MY_VIMRUNTIME.'/bundle/'))
   NeoBundle 'cocopon/lightline-hybrid.vim'
   NeoBundle 'popkirby/lightline-iceberg'
   NeoBundle 'h1mesuke/vim-alignta'
-  NeoBundle 'glidenote/memolist.vim'
   NeoBundle 'ctrlpvim/ctrlp.vim'
   NeoBundle 'justinmk/vim-dirvish'
 
@@ -159,19 +158,6 @@ endif
 
 if neobundle#tap('vim-markdown')
   let g:vim_markdown_folding_disabled = 1
-endif
-
-if neobundle#tap('memolist.vim')
-  " g:memolist_path should be specified in .vimrc_local, e.g.:
-  " if neobundle#tap('memolist.vim')
-  "   let g:memolist_path = $HOME.'/path/to/memolist.vim'
-  " endif
-  let g:memolist_memo_suffix = "md"
-  if neobundle#tap('ctrlp.vim')
-    nmap ,mf :execute "CtrlP" g:memolist_path<cr><f5>
-  endif
-  nmap ,mc :MemoNew<cr>
-  nmap ,mg :MemoGrep<cr>
 endif
 
 if neobundle#tap('vim-dirvish')
