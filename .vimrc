@@ -50,9 +50,6 @@ call neobundle#begin(expand($MY_VIMRUNTIME.'/bundle/'))
   NeoBundle 'tpope/vim-fugitive'
   NeoBundle 'thinca/vim-quickrun'
   NeoBundle 'vim-jp/autofmt'
-  NeoBundle 'itchyny/lightline.vim'
-  NeoBundle 'cocopon/lightline-hybrid.vim'
-  NeoBundle 'popkirby/lightline-iceberg'
   NeoBundle 'h1mesuke/vim-alignta'
   NeoBundle 'ctrlpvim/ctrlp.vim'
   NeoBundle 'justinmk/vim-dirvish'
@@ -87,60 +84,6 @@ filetype plugin indent on
 NeoBundleCheck
 
 "----- plugin settings -----
-
-if neobundle#tap('lightline.vim') && neobundle#tap('vim-fugitive')
-  let g:lightline = {
-        \ 'colorscheme': 'hybrid',
-        \ 'active': {
-        \   'left':  [ [ 'mode', 'paste' ],
-        \              [ 'fugitive', 'readonly', 'filename' ] ],
-        \   'right': [ [ 'lineinfo' ],
-        \            [ 'percent' ],
-        \            [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
-        \ },
-        \ 'component': {
-        \   'charvaluehex': '0x%04B'
-        \ },
-        \ 'component_function': {
-        \   'fugitive':     'MyFugitive',
-        \   'readonly':     'MyReadonly',
-        \   'modified':     'MyModified',
-        \   'filename':     'MyFilename'
-        \ }
-        \ }
-
-  function! MyModified()
-    if &filetype == "help"
-      return ""
-    elseif &modified
-      return "+"
-    elseif &modifiable
-      return ""
-    else
-      return ""
-    endif
-  endfunction
-
-  function! MyReadonly()
-    if &filetype == "help"
-      return ""
-    elseif &readonly
-      return "RO"
-    else
-      return ""
-    endif
-  endfunction
-
-  function! MyFugitive()
-    return exists('*fugitive#head') ? fugitive#head() : ''
-  endfunction
-
-  function! MyFilename()
-    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-         \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-         \ ('' != MyModified() ? ' ' . MyModified() : '')
-  endfunction
-endif
 
 if neobundle#tap('ctrlp.vim')
   let g:ctrlp_cmd = 'CtrlPMixed'
