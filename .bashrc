@@ -68,14 +68,21 @@ if [ -f "${brew_prefix}/etc/bash_completion" ]; then
 fi
 
 # prompt
-PS1='\[\e]0;\w\a\]' # set window title
-PS1+='\n'  # newline
-PS1+='\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]'  # user@host, current_directory
+PS1='[\u@\h \W]'
 if type __git_ps1 &>/dev/null; then
-  PS1+='\[\e[0;35m\]$(__git_ps1)\[\e[0m\]'    # git branch name
+  PS1+='\[\e[0;35m\]$(__git_ps1 ":%s ")\[\e[0m\]'    # git branch name
 fi
-PS1+='\n'  # newline
-PS1+='\$ ' # prompt
+PS1+='\$ '
+
+# prompt (rich version)
+# PS1='\[\e]0;\w\a\]' # set window title
+# PS1+='\n'  # newline
+# PS1+='\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]'  # user@host, current_directory
+# if type __git_ps1 &>/dev/null; then
+#   PS1+='\[\e[0;35m\]$(__git_ps1)\[\e[0m\]'    # git branch name
+# fi
+# PS1+='\n'  # newline
+# PS1+='\$ ' # prompt
 
 # golang
 export GOPATH=$HOME
@@ -86,11 +93,11 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
 if [ "$(uname)" == 'Darwin' ]; then
-  alias ls='ls -AFG'
-  alias ll='ls -lAFG'
+  alias ls='ls -FG'
+  alias ll='ls -lFG'
 else
-  alias ls='ls -AF --color=auto'
-  alias ll='ls -lAF --color=auto'
+  alias ls='ls -F --color=auto'
+  alias ll='ls -lF --color=auto'
 fi
 alias be='bundle exec'
 alias macvim='open -a /Applications/MacVim.app'
