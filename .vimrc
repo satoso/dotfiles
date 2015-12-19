@@ -11,9 +11,7 @@ scriptencoding utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
 set fileformats=unix,dos,mac
 
-if !has('gui_running')
-  set t_Co=256
-endif
+if !has('gui_running') | set t_Co=256 | endif
 
 if isdirectory($HOME.'/.vim')
   let $MY_VIMRUNTIME = $HOME.'/.vim'
@@ -31,24 +29,9 @@ call neobundle#begin(expand($MY_VIMRUNTIME.'/bundle/'))
   " Let NeoBundle manage NeoBundle
   NeoBundleFetch 'Shougo/neobundle.vim'
 
-  " NeoBundle 'Shougo/vimproc.vim', {
-  " \ 'build' : {
-  " \     'windows' : 'tools\\update-dll-mingw',
-  " \     'cygwin' : 'make -f make_cygwin.mak',
-  " \     'mac' : 'make -f make_mac.mak',
-  " \     'linux' : 'make',
-  " \     'unix' : 'gmake',
-  " \    },
-  " \ }
-  " NeoBundle 'Shougo/unite.vim'
-  " NeoBundle 'Shougo/neomru.vim'
-  " NeoBundle 'Shougo/vimfiler'
-  " NeoBundle 'Shougo/vimshell'
-
   " My Bundles here:
   " Note: Do not set neobundle setting in .gvimrc!
   NeoBundle 'tpope/vim-fugitive'
-  NeoBundle 'thinca/vim-quickrun'
   NeoBundle 'vim-jp/autofmt'
   NeoBundle 'h1mesuke/vim-alignta'
   NeoBundle 'justinmk/vim-dirvish'
@@ -58,23 +41,15 @@ call neobundle#begin(expand($MY_VIMRUNTIME.'/bundle/'))
   NeoBundle 'othree/html5.vim'
   NeoBundle 'hail2u/vim-css3-syntax'
   NeoBundle 'rcmdnk/vim-markdown'
-  " NeoBundle 'joker1007/vim-markdown-quote-syntax'
-  NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'derekwyatt/vim-scala'
-  NeoBundle 'gre/play2vim'
   NeoBundle 'PProvost/vim-ps1'
 
   " color scheme
   NeoBundle 'altercation/vim-colors-solarized'
   NeoBundle 'w0ng/vim-hybrid'
-  NeoBundle 'vim-scripts/Wombat'
-  NeoBundle 'nanotech/jellybeans.vim'
-  NeoBundle 'tomasr/molokai'
   NeoBundle 'chriskempson/vim-tomorrow-theme'
-  NeoBundle 'matthewtodd/vim-twilight'
   NeoBundle 'cocopon/iceberg.vim'
   NeoBundle 'chriskempson/base16-vim'
-  NeoBundle 'sickill/vim-monokai'
 call neobundle#end()
 
 filetype plugin indent on
