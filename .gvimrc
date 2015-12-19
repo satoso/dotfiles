@@ -1,5 +1,4 @@
 scriptencoding utf-8
-
 set guioptions-=T     " don't show toolbars
 
 if has('mac')
@@ -25,6 +24,15 @@ elseif has('win32') || has('win64')
   " keep IM-control (on insert mode) disabled
   inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
+
+" status line (":help statusline" for help)
+" lefthand
+set statusline=%<[%n]%m%r%h%w\ %F
+" left-right boundary
+set statusline+=%=
+" righthand
+set statusline+=%{fugitive#statusline()}  " Git branch name
+set statusline+=\ \ %1l/%L,%c%V\ %{(&fenc!=''?&fenc:&enc).':'.&ff}\ 0x%04B\ %y\ \ %P
 
 " save the size and position of the window on exit
 " http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
@@ -61,11 +69,6 @@ highlight SpecialKey guifg=DarkGreen
 " let g:solarized_visibility="low"
 " colorscheme solarized
 " set background=light
-
-" set cursorline        " mark the current line
-" " only highlight line-numbers
-" highlight CursorLine gui=NONE guifg=NONE guibg=NONE
-" set cursorcolumn      " mark the current column
 
 " load machine-local settings
 if filereadable(expand($HOME.'/.gvimrc_local'))
