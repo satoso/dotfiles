@@ -51,7 +51,6 @@ call neobundle#begin(expand($MY_VIMRUNTIME.'/bundle/'))
   NeoBundle 'thinca/vim-quickrun'
   NeoBundle 'vim-jp/autofmt'
   NeoBundle 'h1mesuke/vim-alignta'
-  NeoBundle 'ctrlpvim/ctrlp.vim'
   NeoBundle 'justinmk/vim-dirvish'
 
   " syntax
@@ -84,20 +83,6 @@ filetype plugin indent on
 NeoBundleCheck
 
 "----- plugin settings -----
-
-if neobundle#tap('ctrlp.vim')
-  let g:ctrlp_cmd = 'CtrlPMixed'
-  let g:ctrlp_show_hidden = 1
-  let s:ignore_dir = '\.git|\.hg|\.svn|_darcs|\.bzr|\.Trash|\.rbenv|Library|Applications|Music|vendor/bundle|AppData'
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](' . s:ignore_dir . ')$',
-    \ 'file': '\v\.(exe|so|dll|jpg)$',
-    \ }
-  " mattn/files
-  if getftype(expand('~/bin/files')) == 'file'
-    let g:ctrlp_user_command = '~/bin/files -i ''^(' . s:ignore_dir . ')$'' -p %s'
-  endif
-endif
 
 if neobundle#tap('vim-markdown')
   let g:vim_markdown_folding_disabled = 1
