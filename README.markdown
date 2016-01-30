@@ -36,9 +36,9 @@ Symlink Windows version:
 ```bat
 :: on Command Prompt with admin authority
 :: syntax: mklink <option> <link> <target>
-mklink %USERPROFILE%\.bash_profile %USERPROFILE%\dotfiles\.bash_profile
-mklink %USERPROFILE%\.bashrc %USERPROFILE%\dotfiles\.bashrc
-mklink %USERPROFILE%\_vimrc %USERPROFILE%\dotfiles\.vimrc
-mklink %USERPROFILE%\_gvimrc %USERPROFILE%\dotfiles\.gvimrc
-mklink /D %USERPROFILE%\vimfiles %USERPROFILE%\dotfiles\.vim
+mklink "%USERPROFILE%\.bash_profile" "%USERPROFILE%\dotfiles\.bash_profile"
+mklink "%USERPROFILE%\.bashrc" "%USERPROFILE%\dotfiles\.bashrc"
+mklink "%USERPROFILE%\_vimrc" "%USERPROFILE%\dotfiles\.vimrc"
+mklink "%USERPROFILE%\_gvimrc" "%USERPROFILE%\dotfiles\.gvimrc"
+mklink /D "%USERPROFILE%\vimfiles" "%USERPROFILE%\dotfiles\.vim"
 ```
