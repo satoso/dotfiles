@@ -113,6 +113,8 @@ endif
 if has('persistent_undo') && isdirectory(expand($HOME.'/.vimundo'))
   set undodir=$HOME/.vimundo
   set undofile
+else
+  set noundofile
 endif
 
 " move cursor as displayed (<C-n>,<C-p> instead for movement between physical lines)

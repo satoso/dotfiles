@@ -7,7 +7,8 @@ if has('mac')
   " set guifont=Menlo:h14
   " set guifont=Migu\ 2M:h14
 elseif has('win32') || has('win64')
-  set guifont=BDF\ UM+\ OUTLINE:h10
+  set guifont=BDF\ UM+:h9
+  " set guifont=BDF\ UM+\ OUTLINE:h10
   " set guifont=Consolas:h10
   " set guifont=MS_Gothic:h9
   " set guifontwide=Migu\ 2M:h10.5
