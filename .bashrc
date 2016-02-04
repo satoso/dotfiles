@@ -2,9 +2,7 @@
 [[ "$-" != *i* ]] && return
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
-fi
+test -r /etc/bashrc && . /etc/bashrc
 
 if [ "$(uname)" == 'Darwin' ]; then
   # Mac
@@ -22,36 +20,8 @@ elif [ "$(expr substr $(uname -s) 1 6)" == 'CYGWIN' ]; then
   export CYGWIN="winsymlinks:native"
 fi
 
-# search /usr/local/bin before /usr/bin
-# to find homebrew-ed module first
-export PATH="/usr/local/bin:${PATH}"
-
-# for nodebrew
-export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
-
-# for rbenv
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-if which rbenv &>/dev/null; then
-  eval "$(rbenv init -)"
-fi
-
-# for pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="${PYENV_ROOT}/bin:${PATH}"
-if which pyenv &>/dev/null; then
-  eval "$(pyenv init -)"
-fi
-
-# for Mercurial
-export HGENCODING=utf-8
-
-# for Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:${PATH}"
-
-# for Ansible
-# specify an inventory file location, instead of /etc/ansible/hosts
-export ANSIBLE_INVENTORY=~/ansible_hosts
-export ANSIBLE_COW_SELECTION=random
+which rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
+which pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 
 # cancel association of ctrl-s to 'stop'
 # in reverse search(ctrl-r), ctrl-s is now available for moving forward
@@ -59,10 +29,10 @@ stty stop undef
 
 # bash-completion
 brew_prefix=''
-if which brew &>/dev/null; then
+if which brew >/dev/null 2>&1 ; then
   brew_prefix="$(brew --prefix)"
 fi
-if [ -f "${brew_prefix}/etc/bash_completion" ]; then
+if [ -r "${brew_prefix}/etc/bash_completion" ]; then
   source ${brew_prefix}/etc/bash_completion
   source ${brew_prefix}/etc/bash_completion.d/git-prompt.sh
 fi
@@ -83,10 +53,6 @@ PS1+='\$ '
 # fi
 # PS1+='\n'  # newline
 # PS1+='\$ ' # prompt
-
-# golang
-export GOPATH=$HOME
-export PATH=$PATH:$GOPATH/bin
 
 # aliases
 alias mv='mv -i'
