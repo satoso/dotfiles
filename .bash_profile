@@ -1,3 +1,5 @@
+export LANG=ja_JP.UTF-8
+
 # search /usr/local/bin before /usr/bin
 # to find homebrew-ed module first
 export PATH="/usr/local/bin:${PATH}"
