@@ -50,9 +50,18 @@ augroup SaveWindow
     call writefile(options, g:save_window_file)
   endfunction
 augroup END
-if filereadable(g:save_window_file)
+if has('vim_starting') && filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
+
+" save session on exit
+" (have some problem)
+"let g:session_file = expand($HOME.'/.vimsession')
+"augroup SaveSession
+"  autocmd!
+"  autocmd VimEnter * nested execute 'source' g:session_file
+"  autocmd VimLeave * execute 'mksession!' g:session_file
+"augroup END
 
 " visible zenkaku-space
 " http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
