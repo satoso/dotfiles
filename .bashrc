@@ -59,11 +59,11 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
 if [ "$(uname)" == 'Darwin' ]; then
-  alias ls='ls -FG'
-  alias ll='ls -lFG'
+  alias ls='ls -G'
+  alias ll='ls -lG'
 else
-  alias ls='ls -F --color=auto'
-  alias ll='ls -lF --color=auto'
+  alias ls='ls --color=auto'
+  alias ll='ls -l --color=auto'
 fi
 alias be='bundle exec'
 alias macvim='open -a /Applications/MacVim.app'
