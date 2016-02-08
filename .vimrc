@@ -133,6 +133,11 @@ nnoremap /  /\v
 if has('win32') || has('win32unix') || has('win64')
   nnoremap <C-F4> :<C-u>tabclose<CR>
   nnoremap <C-n> :<C-u>tabnew<CR>
+  " http://stackoverflow.com/questions/94382/vim-with-powershell
+  set shell=powershell.exe
+  set shellcmdflag=-Command
+  set shellquote=\"
+  set shellxquote=
 endif
 
 " don't fold a line automatically (this will overwrite default 'textwidth' setting)
