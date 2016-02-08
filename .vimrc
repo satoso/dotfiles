@@ -122,6 +122,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
+nnoremap ,b :<C-u>ls<CR>:buf 
 " http://yuzuemon.hatenablog.com/entry/20110304/1299199079
 inoremap <c-h> <LEFT>
 inoremap <c-j> <DOWN>
