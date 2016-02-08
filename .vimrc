@@ -3,7 +3,6 @@
 " skip everything if vim-tiny or vim-small
 if !1 | finish | endif
 
-set nocompatible    " no vi-compatible
 " 'set encoding' and then 'scriptencoding'
 " http://rbtnn.hateblo.jp/entry/2014/12/28/010913
 set encoding=utf-8
