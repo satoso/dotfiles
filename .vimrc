@@ -84,6 +84,7 @@ if neobundle#tap('vim-dirvish')
     autocmd FileType dirvish nnoremap <buffer> t
         \ :tabnew <C-R>=fnameescape(getline('.'))<CR><CR>
   augroup END
+  let g:dirvish_relative_paths = 1
   nnoremap ,f :<C-u>Dirvish %:p:h<CR>
 endif
 
