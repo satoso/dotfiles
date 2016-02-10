@@ -93,6 +93,7 @@ endif
 syntax on
 set number    " show line numbers
 set wrap
+set display=lastline    " wholly show a long line
 
 set list    " show invisible chars
 set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%  ",eol:↲
