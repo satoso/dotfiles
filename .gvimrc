@@ -26,7 +26,7 @@ elseif has('win32') || has('win64')
   inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
 
-" status line (":help statusline" for help)
+" status line
 " lefthand
 set statusline=%<[%n]%m%r%h%w\ %F
 " left-right boundary
@@ -54,15 +54,6 @@ if has('vim_starting') && filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
 
-" save session on exit
-" (have some problem)
-"let g:session_file = expand($HOME.'/.vimsession')
-"augroup SaveSession
-"  autocmd!
-"  autocmd VimEnter * nested execute 'source' g:session_file
-"  autocmd VimLeave * execute 'mksession!' g:session_file
-"augroup END
-
 " visible zenkaku-space
 " http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
 " (must be specified before :colorscheme command)
@@ -73,7 +64,8 @@ augroup highlightIdegraphicSpace
 augroup END
 
 set background=dark
-colorscheme hybrid
+silent! colorscheme desert
+silent! colorscheme hybrid
 highlight SpecialKey guifg=DarkGreen
 
 " let g:solarized_visibility="low"
@@ -81,9 +73,5 @@ highlight SpecialKey guifg=DarkGreen
 " set background=light
 
 " load machine-local settings
-if filereadable(expand($HOME.'/.gvimrc_local'))
-  source $HOME/.gvimrc_local
-endif
-if filereadable(expand($HOME.'/_gvimrc_local'))
-  source $HOME/_gvimrc_local
-endif
+if filereadable(expand($HOME.'/.gvimrc_local')) | source $HOME/.gvimrc_local | endif
+if filereadable(expand($HOME.'/_gvimrc_local')) | source $HOME/_gvimrc_local | endif
