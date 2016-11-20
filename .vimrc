@@ -32,9 +32,7 @@ Plug 'PProvost/vim-ps1'
 " color scheme
 Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'altercation/vim-colors-solarized'
 Plug 'cocopon/iceberg.vim'
-Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " for vim-markdown

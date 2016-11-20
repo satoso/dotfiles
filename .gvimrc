@@ -27,11 +27,8 @@ elseif has('win32') || has('win64')
 endif
 
 " status line
-" lefthand
 set statusline=%<[%n]%m%r%h%w\ %F
-" left-right boundary
-set statusline+=%=
-" righthand
+set statusline+=%=  " left-right boundary
 set statusline+=%{fugitive#statusline()}  " Git branch name
 set statusline+=\ \ %1l/%L,%c%V\ %{(&fenc!=''?&fenc:&enc).':'.&ff}\ 0x%04B\ %y\ \ %P
 
@@ -67,10 +64,6 @@ set background=dark
 silent! colorscheme desert
 silent! colorscheme hybrid
 highlight SpecialKey guifg=DarkGreen
-
-" let g:solarized_visibility="low"
-" colorscheme solarized
-" set background=light
 
 " load machine-local settings
 if filereadable(expand($HOME.'/.gvimrc_local')) | source $HOME/.gvimrc_local | endif
