@@ -4,20 +4,10 @@ export LANG=ja_JP.UTF-8
 # to find homebrew-ed module first
 export PATH="/usr/local/bin:${PATH}"
 
-# nodebrew
 export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
-
-# rbenv
 export PATH="${HOME}/.rbenv/bin:${PATH}"
-
-# pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
-
-# Mercurial
-export HGENCODING=utf-8
-
-# Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:${PATH}"
 
 # Ansible
@@ -27,6 +17,8 @@ export ANSIBLE_COW_SELECTION=random
 
 # golang
 export GOPATH=$HOME
-export PATH=$PATH:$GOPATH/bin
+export PATH="$PATH:$GOPATH/bin"
+
+export HGENCODING=utf-8
 
 test -r ~/.bashrc && . ~/.bashrc

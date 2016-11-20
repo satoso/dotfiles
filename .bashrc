@@ -5,8 +5,7 @@
 test -r /etc/bashrc && . /etc/bashrc
 
 if [ "$(uname)" == 'Darwin' ]; then
-  # Mac
-  # note that 'expr substr' isn't available on Mac
+  # Mac (note that 'expr substr' isn't available on Mac)
   :  # do nothing
 elif [ "$(expr substr $(uname -s) 1 6)" == 'CYGWIN' ]; then
   # Cygwin
@@ -32,27 +31,15 @@ brew_prefix=''
 if which brew >/dev/null 2>&1 ; then
   brew_prefix="$(brew --prefix)"
 fi
-if [ -r "${brew_prefix}/etc/bash_completion" ]; then
-  source ${brew_prefix}/etc/bash_completion
-  source ${brew_prefix}/etc/bash_completion.d/git-prompt.sh
-fi
+test -r "${brew_prefix}/etc/bash_completion" && source "${brew_prefix}/etc/bash_completion"
+test -r "${brew_prefix}/etc/bash_completion.d/git-prompt.sh" && source "${brew_prefix}/etc/bash_completion.d/git-prompt.sh"
 
 # prompt
 PS1='[\u@\h \W]'
-if type __git_ps1 &>/dev/null; then
+if type __git_ps1 >/dev/null 2>&1 ; then
   PS1+='\[\e[0;35m\]$(__git_ps1 ":%s ")\[\e[0m\]'    # git branch name
 fi
 PS1+='\$ '
-
-# prompt (rich version)
-# PS1='\[\e]0;\w\a\]' # set window title
-# PS1+='\n'  # newline
-# PS1+='\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]'  # user@host, current_directory
-# if type __git_ps1 &>/dev/null; then
-#   PS1+='\[\e[0;35m\]$(__git_ps1)\[\e[0m\]'    # git branch name
-# fi
-# PS1+='\n'  # newline
-# PS1+='\$ ' # prompt
 
 # aliases
 alias mv='mv -i'
