@@ -22,8 +22,6 @@ cd ~/dotfiles
 # -n option is needed for replacing links to a directory.
 ln -si `pwd`/.bash_profile ~/.bash_profile
 ln -si `pwd`/.bashrc ~/.bashrc
-ln -si `pwd`/.vimrc ~/.vimrc
-ln -si `pwd`/.gvimrc ~/.gvimrc
 ln -sni `pwd`/.vim ~/.vim
 
 # If appropriate:
@@ -38,7 +36,5 @@ Symlink Windows version:
 :: syntax: mklink <option> <link> <target>
 mklink "%USERPROFILE%\.bash_profile" "%USERPROFILE%\dotfiles\.bash_profile"
 mklink "%USERPROFILE%\.bashrc" "%USERPROFILE%\dotfiles\.bashrc"
-mklink "%USERPROFILE%\_vimrc" "%USERPROFILE%\dotfiles\.vimrc"
-mklink "%USERPROFILE%\_gvimrc" "%USERPROFILE%\dotfiles\.gvimrc"
 mklink /D "%USERPROFILE%\vimfiles" "%USERPROFILE%\dotfiles\.vim"
 ```

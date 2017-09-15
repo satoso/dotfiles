@@ -1,3 +1,5 @@
 .vim/*
 !.gitkeep
+!.vim/vimrc
+!.vim/gvimrc
 .netrwhist
