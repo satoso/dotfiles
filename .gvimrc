@@ -1,32 +1,31 @@
 scriptencoding utf-8
 set guioptions-=T     " don't show toolbars
+set guioptions-=m     " don't show menubar
 
 if has('mac')
-  set guifont=DejaVu\ Sans\ Mono:h13
-  set guifontwide=Ricty:h15
-  " set guifont=Menlo:h14
-  " set guifont=Migu\ 2M:h14
+  set guifont=DejaVu\ Sans\ Mono:h13,Menlo:h14
+  set guifontwide=Ricty:h15,Migu\ 2M:h14
 elseif has('win32') || has('win64')
-  set guifont=BDF\ UM+:h9
-  " set guifont=BDF\ UM+\ OUTLINE:h10
-  " set guifont=Consolas:h10
-  " set guifont=MS_Gothic:h9
-  " set guifontwide=Migu\ 2M:h10.5
-  " set renderoptions=type:directx,renmode:5,gamma:1.9
-
+  " bitmap fonts
+  set guifont=Tamsyn8x16:h16,MS_Gothic:h11 ",BDF\ UM+\ OUTLINE:h10,BDF\ UM+:h9
+  set guifontwide=MS_Gothic:h11
+  " anti-aliased fonts
+  "set guifont=Source\ Code\ Pro:h10.5,Consolas:h10.5,MS_Gothic:h11
+  "set guifontwide=Migu\ 2M:h11,MS_Gothic:h11
+  "set renderoptions=type:directx,renmode:5,gamma:1.9
+  set linespace=0
   set showtabline=2
   " fix mojibake on the menu bar
   " http://kaworu.jpn.org/kaworu/2013-05-08-1.php
-  source $VIMRUNTIME/delmenu.vim
-  set langmenu=ja_jp.utf-8
-  source $VIMRUNTIME/menu.vim
+  "source $VIMRUNTIME/delmenu.vim
+  "set langmenu=ja_jp.utf-8
+  "source $VIMRUNTIME/menu.vim
 
   set iminsert=0
   " keep IM-control (on insert mode) disabled
   inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
 
-" status line
 set statusline=%<[%n]%m%r%h%w\ %F
 set statusline+=%=  " left-right boundary
 set statusline+=%{fugitive#statusline()}  " Git branch name

@@ -1,5 +1,4 @@
-" prereqs:
-" - vim-plug installed (see: https://github.com/junegunn/vim-plug )
+" prereq: vim-plug installed (see: https://github.com/junegunn/vim-plug )
 
 " skip everything if vim-tiny or vim-small
 if !1 | finish | endif
@@ -14,25 +13,22 @@ set fileformats=unix,dos,mac
 if !has('gui_running') | set t_Co=256 | endif
 
 call plug#begin()
+" tools
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
-Plug 'vim-jp/autofmt'
-Plug 'h1mesuke/vim-alignta'
 Plug 'justinmk/vim-dirvish'
-
+Plug 'h1mesuke/vim-alignta', { 'on' : ['Align', 'Alignta'] }
 " syntax
-Plug 'slim-template/vim-slim'
-Plug 'othree/html5.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'rcmdnk/vim-markdown'
-Plug 'derekwyatt/vim-scala'
-Plug 'PProvost/vim-ps1'
-
+Plug 'slim-template/vim-slim', { 'for' : 'slim' }
+Plug 'othree/html5.vim', { 'for' : 'html' }
+Plug 'hail2u/vim-css3-syntax', { 'for' : 'css' }
+Plug 'rcmdnk/vim-markdown', { 'for' : 'markdown' }
+Plug 'derekwyatt/vim-scala', { 'for' : 'scala' }
+Plug 'PProvost/vim-ps1', { 'for' : 'ps1' }
 " color scheme
 Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 " for vim-markdown
@@ -83,11 +79,8 @@ nnoremap /  /\v
 if has('win32') || has('win32unix') || has('win64')
   nnoremap <C-F4> :<C-u>tabclose<CR>
   nnoremap <C-n> :<C-u>tabnew<CR>
-  " http://stackoverflow.com/questions/94382/vim-with-powershell
-  set shell=powershell.exe
-  set shellcmdflag=-Command
-  set shellquote=\"
-  set shellxquote=
+  " vim-plug only runs on cmd.exe
+  set shell=cmd.exe
 endif
 
 " don't fold a line automatically (this will overwrite default 'textwidth' setting)
