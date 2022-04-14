@@ -26,11 +26,6 @@ elseif has('win32') || has('win64')
   inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
 
-set statusline=%<[%n]%m%r%h%w\ %F
-set statusline+=%=  " left-right boundary
-set statusline+=%{fugitive#statusline()}  " Git branch name
-set statusline+=\ \ %1l/%L,%c%V\ %{(&fenc!=''?&fenc:&enc).':'.&ff}\ 0x%04B\ %y\ \ %P
-
 " save the size and position of the window on exit
 " http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
 let g:save_window_file = expand('~/.vimwinpos')
@@ -49,20 +44,6 @@ augroup END
 if has('vim_starting') && filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
-
-" visible zenkaku-space
-" http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
-" (must be specified before :colorscheme command)
-augroup highlightIdegraphicSpace
-  autocmd!
-  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-augroup END
-
-set background=dark
-silent! colorscheme desert
-silent! colorscheme hybrid
-highlight SpecialKey guifg=DarkGreen
 
 " load machine-local settings
 if filereadable(expand($HOME.'/.gvimrc_local')) | source $HOME/.gvimrc_local | endif

@@ -25,7 +25,6 @@ Plug 'othree/html5.vim', { 'for' : 'html' }
 Plug 'hail2u/vim-css3-syntax', { 'for' : 'css' }
 Plug 'rcmdnk/vim-markdown', { 'for' : 'markdown' }
 Plug 'derekwyatt/vim-scala', { 'for' : 'scala' }
-Plug 'PProvost/vim-ps1', { 'for' : 'ps1' }
 " color scheme
 Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/vim-tomorrow-theme'
@@ -96,6 +95,25 @@ augroup md-extension
   autocmd!
   autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} setlocal filetype=markdown
 augroup END
+
+set statusline=%<[%n]%m%r%h%w\ %F
+set statusline+=%=  " left-right boundary
+set statusline+=%{fugitive#statusline()}  " Git branch name
+set statusline+=\ \ %1l/%L,%c%V\ %{(&fenc!=''?&fenc:&enc).':'.&ff}\ 0x%04B\ %y\ \ %P
+
+" visible zenkaku-space
+" http://vim-jp.org/vim-users-jp/2009/07/12/Hack-40.html
+" (must be specified before :colorscheme command)
+augroup highlightIdegraphicSpace
+  autocmd!
+  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
+
+set background=dark
+silent! colorscheme desert
+silent! colorscheme hybrid
+highlight SpecialKey guifg=DarkGreen
 
 " load machine-local settings
 if filereadable(expand($HOME.'/.vimrc_local')) | source $HOME/.vimrc_local | endif
