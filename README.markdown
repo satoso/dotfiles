@@ -14,6 +14,7 @@ git clone https://github.com/satoso/dotfiles.git
 # ln -si `pwd`/.bash_profile ~/.bash_profile
 # ln -si `pwd`/.bashrc ~/.bashrc
 
+ln -sni `pwd`/.config ~/.config
 ln -sni `pwd`/.vim ~/.vim
 # then install vim-plug ( https://github.com/junegunn/vim-plug )
 
