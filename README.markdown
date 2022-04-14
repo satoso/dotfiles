@@ -1,40 +1,21 @@
-satoso's dotfiles.
+# satoso's dotfiles
 
-usage:
-
-```bash
-# clone recursively (i.e. along with inner submodules)
-git clone --recursive git@github.com:satoso/dotfiles.git ~/dotfiles
-```
-
-First, be sure to set the identity repository-locally (in `.git/config` ).
+Setup:
 
 ```bash
-cd ~/dotfiles
-git config user.name "satoso"
-git config user.email "satoso@users.noreply.github.com"
-```
+git config --global user.name "satoso"
+git config --global user.email "satoso@users.noreply.github.com"
 
-Symlink things.
+mkdir -p ~/src/github.com/satoso
+cd ~/src/github.com/satoso
+git clone https://github.com/satoso/dotfiles.git 
 
-```bash
-cd ~/dotfiles
-# -n option is needed for replacing links to a directory.
-ln -si `pwd`/.bash_profile ~/.bash_profile
-ln -si `pwd`/.bashrc ~/.bashrc
+# if appropriate
+# ln -si `pwd`/.bash_profile ~/.bash_profile
+# ln -si `pwd`/.bashrc ~/.bashrc
+
 ln -sni `pwd`/.vim ~/.vim
+# then install vim-plug ( https://github.com/junegunn/vim-plug )
 
-# If appropriate:
-ln -si `pwd`/.gitconfig ~/.gitconfig
-ln -si `pwd`/.gitignore_global ~/.gitignore_global
-```
-
-Symlink Windows version:
-
-```bat
-:: on Command Prompt with admin authority
-:: syntax: mklink <option> <link> <target>
-mklink "%USERPROFILE%\.bash_profile" "%USERPROFILE%\dotfiles\.bash_profile"
-mklink "%USERPROFILE%\.bashrc" "%USERPROFILE%\dotfiles\.bashrc"
-mklink /D "%USERPROFILE%\vimfiles" "%USERPROFILE%\dotfiles\.vim"
+echo "export EDITOR=vim" >> ~/.bashrc
 ```
