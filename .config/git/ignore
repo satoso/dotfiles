@@ -4,6 +4,3 @@
 # vim
 *.swp
 *.un~
-
-# rake-completion
-.rake_tasks~
