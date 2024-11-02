@@ -21,6 +21,6 @@ augroup highlightIdegraphicSpace
   autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 highlight SpecialKey guifg=DarkGreen
-colorscheme default
+colorscheme slate
 
 let g:netrw_banner=0
